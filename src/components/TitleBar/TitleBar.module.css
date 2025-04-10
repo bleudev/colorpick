@@ -1,0 +1,50 @@
+.title-bar {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #1b1b1b;
+    transition: 0.3s ease;
+}
+
+.logo {
+    display: inline-block;
+    width: 100px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+/* .logo p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    position: ;
+} */
+
+.logo1, .logo2 {
+    /* Общие стили для обоих элементов */
+    transition: 
+        filter 0.5s ease-in-out,
+        color 0.5s ease-in-out; /* Добавил переход для цвета на всякий случай */
+}
+
+.logo1 {
+    color: rgb(255, 79, 79);
+}
+
+.logo2 {
+    color: rgb(63, 255, 63);
+}
+
+.logo:hover .logo1 {
+    filter: drop-shadow(0 0 0.5em rgba(255, 42, 42, 0.7));
+}
+
+.logo:hover .logo2 {
+    filter: drop-shadow(0 0 0.5em rgba(77, 255, 42, 0.7));
+}
