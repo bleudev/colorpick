@@ -4,10 +4,10 @@
     top: 0px;
     align-items: center;
     width: 100%;
-    justify-content: space-between;
+    justify-content: left;
     padding: 10px;
     background-color: #1b1b1b;
-    transition: 0.3s ease;
+    gap: 10px;
 }
 
 .logo {
@@ -17,34 +17,38 @@
     font-size: 20px;
 }
 
-
-/* .logo p {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-    position: ;
-} */
-
-.logo1, .logo2 {
-    /* Общие стили для обоих элементов */
+.txt_r, .txt_g {
     transition: 
         filter 0.5s ease-in-out,
-        color 0.5s ease-in-out; /* Добавил переход для цвета на всякий случай */
+        color 0.5s ease-in-out;
 }
 
-.logo1 {
+.txt_r {
     color: rgb(255, 79, 79);
 }
 
-.logo2 {
+.txt_g {
     color: rgb(63, 255, 63);
 }
 
-.logo:hover .logo1 {
+.txt_b {
+    color: rgb(143, 143, 255);
+}
+
+.rgb {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.logo:hover .txt_r, .rgb:hover .txt_r {
     filter: drop-shadow(0 0 0.5em rgba(255, 42, 42, 0.7));
 }
 
-.logo:hover .logo2 {
+.logo:hover .txt_g, .rgb:hover .txt_g {
     filter: drop-shadow(0 0 0.5em rgba(77, 255, 42, 0.7));
+}
+
+.rgb:hover .txt_b {
+    filter: drop-shadow(0 0 0.5em rgba(75, 153, 255, 0.7));
 }

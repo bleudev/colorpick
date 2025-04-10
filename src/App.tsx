@@ -4,12 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import TitleBar from './components/TitleBar/TitleBar'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [count, setCount] = useState(0);
+  const [mode, setMode] = useState('');
 
   return (
     <>
-      <TitleBar/>
+      <TitleBar change_mode={(new_mode: string) => setMode((old_mode: string) => new_mode)}/>
       <div className="content">
         <div>
           <a href="https://vite.dev" target="_blank">
@@ -33,7 +34,5 @@ function App() {
         </p>
       </div>
     </>
-  )
-}
-
-export default App
+  );
+};
