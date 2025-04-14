@@ -1,37 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import TitleBar from './components/TitleBar/TitleBar'
+import { useState } from 'react';
+import styles from './App.module.css';
+import TitleBar from './components/TitleBar/TitleBar';
+import ColorfulSlider from './components/ColorfulSlider/ColorfulSlider';
+import { IntRange, Modes } from './utils/annotations';
+import Color from './utils/classes/Color';
+import ColorState from './utils/classes/ColorState';
 
 export default function App() {
-  const [count, setCount] = useState(0);
-  const [mode, setMode] = useState('');
+  const [mode, setMode] = useState(Modes.RGB);
+  const [first, setFirst] = useState(0);
+  const [second, setSecond] = useState(0);
+  const [third, setThird] = useState(0);
+  var color = new Color(mode, Array(3).fill(0).map((_, i) => new ColorState([first, second, third][i], i as IntRange<0, 3>)) as [ColorState, ColorState, ColorState]);
 
   return (
     <>
-      <TitleBar change_mode={(new_mode: string) => setMode((old_mode: string) => new_mode)}/>
-      <div className="content">
-        <div>
-          <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
+      <TitleBar change_mode={(new_mode: Modes) => setMode((old_mode: Modes) => new_mode)}/>
+      <div className={styles['container']}>
+        <ColorfulSlider change={setFirst} state={color.states[0]}/>
+        <ColorfulSlider change={setSecond} state={color.states[1]}/>
+        <ColorfulSlider change={setThird} state={color.states[2]}/>
       </div>
     </>
   );

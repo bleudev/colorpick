@@ -1,8 +1,9 @@
-import { FunctionComponent, ReactElement } from "react";
+import { FunctionComponent } from "react";
 import styles from "./TitleBar.module.css";
+import { Modes } from "../../utils/annotations";
 
 type TitleBarProps = {
-  change_mode: (new_mode: string) => void;
+  change_mode: (new_mode: Modes) => void;
 }
 
 const TitleBar: FunctionComponent<TitleBarProps> = ({change_mode}) => {
@@ -12,7 +13,7 @@ const TitleBar: FunctionComponent<TitleBarProps> = ({change_mode}) => {
         <span className={styles['txt_r']}>Color</span>
         <span className={styles['txt_g']}>Pick</span>
       </span>
-      <button className={styles['rgb']} onClick={() => change_mode('rgb')}>
+      <button className={styles['rgb']} onClick={() => change_mode(Modes.RGB)}>
         <span className={styles['txt_r']}>R</span>
         <span className={styles['txt_g']}>G</span>
         <span className={styles['txt_b']}>B</span>
