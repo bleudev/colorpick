@@ -5,6 +5,7 @@ import ColorfulSlider from './components/ColorfulSlider/ColorfulSlider';
 import { IntRange, Modes } from './utils/annotations';
 import Color from './utils/classes/Color';
 import ColorState from './utils/classes/ColorState';
+import Preview from './components/Preview/Preview';
 
 export default function App() {
   const [mode, setMode] = useState(Modes.RGB);
@@ -16,10 +17,13 @@ export default function App() {
   return (
     <>
       <TitleBar change_mode={(new_mode: Modes) => setMode((old_mode: Modes) => new_mode)}/>
-      <div className={styles['container']}>
-        <ColorfulSlider change={setFirst} state={color.states[0]}/>
-        <ColorfulSlider change={setSecond} state={color.states[1]}/>
-        <ColorfulSlider change={setThird} state={color.states[2]}/>
+      <div className={styles['main']}>
+        <Preview color={color}/>
+        <div className={styles['container']}>
+          <ColorfulSlider change={setFirst} state={color.states[0]}/>
+          <ColorfulSlider change={setSecond} state={color.states[1]}/>
+          <ColorfulSlider change={setThird} state={color.states[2]}/>
+        </div>
       </div>
     </>
   );

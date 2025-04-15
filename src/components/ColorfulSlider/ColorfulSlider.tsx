@@ -1,6 +1,5 @@
 import { FunctionComponent, useRef } from "react";
 import styles from "./ColorfulSlider.module.css";
-import { ColorArray } from "../../utils/annotations";
 import ColorState from "../../utils/classes/ColorState";
 
 type ColorfulSliderProps = {

@@ -1,6 +1,11 @@
+.main {
+  display: flex;
+}
+
 .container {
   /* display: flex; */
-  margin-left: 20%;
+  margin-left: 50px;
+  margin-top: -50px;
 }
 
 .container * {

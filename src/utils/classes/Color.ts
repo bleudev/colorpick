@@ -1,4 +1,4 @@
-import { ColorArray, Modes } from "../annotations";
+import { ColorArray, IntRange, Modes } from "../annotations";
 import { HSLToRGB } from "../convertes";
 import ColorState from "./ColorState";
 
@@ -27,10 +27,8 @@ export default class Color {
       case Modes.RGB:
         return this;
       case Modes.HSL:
-        return new Color(Modes.RGB,
-          HSLToRGB( this.states.map( state => state.value ) )
-            .map((v, i) => new ColorState(v, i))
-        );
+        return this.with(HSLToRGB( this.states.map( state => state.value ) as ColorArray )
+                   .map((v, i) => new ColorState(v, i as IntRange<0, 3>)) as [ColorState, ColorState, ColorState]);
       default:
         return null; // Unsupported type
     };
@@ -49,5 +47,62 @@ export default class Color {
    */
   public toArray(): ColorArray | null {
     return this.toRGB()?.states.map((state) => Math.round(state.value * 255)) as ColorArray;
+  }
+
+  /**
+   * ### toFunction()
+   * 
+   * ---
+   * 
+   * Convert color to function string (ex. `rgb(255, 255, 255)`)
+   */
+  public toFunction() {
+    return `${this.mode}(${this.states.map(state => state.toInt()).join(', ')})`
+  }
+
+  /**
+   * ### toString()
+   * 
+   * ---
+   * 
+   * Convert color to string
+   */
+  public toString(): string | null {
+    switch (this.mode) {
+      case Modes.RGB:
+        return `#${this.states.map(state => state.toHexRGB()).join('')}`
+      default:
+        return this.toFunction();
+    }
+  }
+
+  public generate(generator: (old_state: ColorState) => ColorState): Color {
+    return new Color(this.mode, this.states.map(generator) as [ColorState, ColorState, ColorState]);
+  }
+  public with(states: [ColorState, ColorState, ColorState]): Color {
+    return new Color(this.mode, states);
+  }
+
+  // Operators
+
+  /**
+   * ### add(value: number)
+   * 
+   * ---
+   * 
+   * Add `value` to all states's values
+   */
+
+  public add(value: number): Color {
+    return this.generate(state => state.add(value));
+  }
+  public sub(value: number): Color {
+    return this.generate(state => state.sub(value));
+  }
+  public mul(value: number): Color {
+    return this.generate(state => state.mul(value))
+  }
+  public div(value: number): Color {
+    return this.generate(state => state.div(value))
   }
 }

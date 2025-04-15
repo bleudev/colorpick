@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "CodePro";
+  src: local("CodePro"),
+    url("./assets/fonts/otf/code_pro_bold.otf") format("opentype"),
+    url("./assets/fonts/ttf/code_pro_bold.ttf") format("truetype");
+  font-weight: normal;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

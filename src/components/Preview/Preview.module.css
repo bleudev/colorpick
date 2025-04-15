@@ -1,0 +1,35 @@
+.preview {
+    margin-left: 50px;
+    width: 250px;
+    height: 330px;
+    border-radius: 2em;
+}
+
+.copy {
+    margin-top: 230px;
+    width: 244px;
+    height: 94px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 2em;
+    border: 3px solid var(--border-color);
+}
+
+.copy button {
+    background-color: var(--copybtn-color);
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 15px;
+    font-family: monospace;
+    color: var(--text-color);
+    border: none;
+    border-radius: 2em;
+    transition: 
+        filter 0.5s ease-in-out,
+        color 0.5s ease-in-out;
+}
+
+.copy button:hover {
+    border-color: var(--border-color);
+    filter: drop-shadow(0 0 1em rgba(0, 0, 0, 0.5));
+  }
+
