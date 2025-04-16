@@ -6,13 +6,6 @@
   gap: 50px; /* Adjust spacing between the paragraph and slider_bg */
 }
 
-.slider_container p {
-  width: 100px;
-  position: relative;
-  font-size: 50px;
-  font-family: "CodePro";
-}
-
 .slider_bg {
   display: flex; /* Use flexbox to align the slider */
   align-items: center; /* Center vertically */

@@ -32,7 +32,6 @@ const ColorfulSlider: FunctionComponent<ColorfulSliderProps> = ({ change, state 
 
   return (
     <div className={styles['slider_container']}>
-      <p style={{color: `rgb(${state.textcolor.toArray()?.join(',')})`}}>{Math.round(state.value * 255)}</p>
       <div
         ref={sliderRef}
         className={styles["slider_bg"]}

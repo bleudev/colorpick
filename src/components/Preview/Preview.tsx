@@ -12,18 +12,22 @@ const Preview: FunctionComponent<PreviewProps> = ({color}) => {
     <div className={styles['preview']} style={{backgroundColor: `rgb(${color.toArray()?.join(',')})`}}>
       <div className={styles['copy']}
            style={{
-            "--text-color": color.mul(1.5).toString(),
+            "--text-color": color.prtext_color.toString(),
             "--border-color": color.div(2).toString(),
-            "--copybtn-color": color.div(3).toString(),
+            "--copybtn-color": color.div(2.5).toFunction(0.3),
            } as React.CSSProperties}>
         <button className={styles['rgb']}
                 onClick={() => {copy_and_alert(color.toRGB()?.toString() as string);}}>
-          {color.toRGB()?.toString()}
+          {color.toHexRGB()}
         </button>
 
         <button className={styles['rgb_func']}
                 onClick={() => {copy_and_alert(color.toRGB()?.toFunction() as string);}}>
           {color.toRGB()?.toFunction()}
+        </button>
+
+        <button onClick={() => {copy_and_alert(color.toHSL()?.toString() as string);}}>
+          {color.toHSL()?.toString()}
         </button>
       </div>
     </div>

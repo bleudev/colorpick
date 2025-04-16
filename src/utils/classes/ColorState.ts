@@ -27,13 +27,13 @@ export default class ColorState {
   // Converters
 
   /**
-   * ### toInt()
+   * ### toInt(max: number = 255)
    * 
    * ---
    * 
-   * Convert color state to rounded integer (eq. `Math.round(ColorState.value * 255)`)
+   * Convert color state to rounded integer (eq. `Math.round(ColorState.value * max)`)
    */
-  public toInt(): number { return Math.round(this.value * 255); }
+  public toInt(max: number = 255): number { return Math.round(this.value * max); }
 
   /**
    * ### toHexRGB()
