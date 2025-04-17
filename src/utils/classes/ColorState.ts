@@ -51,12 +51,31 @@ export default class ColorState {
     return this.parent?.generate((state) => new ColorState(gen(state.value, state.state_index), state.state_index)) as Color;
   }
 
+  /**
+   * @deprecated Use colorgrad[0] instead
+   */
   get color1(): Color {
-    return this.gencol((value, index) => index === this.state_index ? 0 : value);
+    return this.colorgrad[0];
   }
+  /**
+   * @deprecated Use colorgrad[1] instead
+   */
   get color2(): Color {
-    return this.gencol((value, index) => index === this.state_index ? 1 : value);
+    return this.colorgrad[1];
   }
+  /**
+   * @deprecated Use colorgrad[2] instead
+   */
+  get color3(): Color {
+    return this.colorgrad[2];
+  }
+
+  get colorgrad(): Color[] {
+    let gradacc = 5;
+    let range = [...Array(gradacc).keys()];
+    return range.map(v => this.gencol((value, index) => index === this.state_index ? v / gradacc : value));
+  }
+
   get textcolor(): Color {
     return this.gencol((value, index) => index === this.state_index ? value : 0);
   }

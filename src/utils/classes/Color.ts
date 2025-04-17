@@ -11,6 +11,10 @@ export default class Color {
     this.states = states;
   }
 
+  public static with_values(mode: Modes, values: ColorArray) {
+    return new Color(mode, values.map((v, i) => new ColorState(v, i as IntRange<0,3>)) as [ColorState, ColorState, ColorState]);
+  }
+
   private convert(convertator: (values: ColorArray) => ColorArray, new_mode: Modes = this.mode): Color {
     return this.with(convertator(this.states.map(state => state.value) as ColorArray)
                .map((v, i) => new ColorState(v, i as IntRange<0, 3>)) as [ColorState, ColorState, ColorState],
@@ -217,7 +221,7 @@ export default class Color {
 
   // Getters
   get prtext_color(): Color {
-    let col = this.mul(1.5)
-    return Math.max(...col.states.map(s => s.value)) <= 0.5 ? this.convert(v => v.map(ov => 1 - ov) as ColorArray) : this;
+    let col = this.mul(1.5).to(Modes.RGB);
+    return Math.max(...col.states.map(s => s.value)) <= 0.7 ? this.convert(v => v.map(ov => 1 - ov) as ColorArray) : this;
   }
 }

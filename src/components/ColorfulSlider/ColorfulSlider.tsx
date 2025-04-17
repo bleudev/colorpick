@@ -36,7 +36,7 @@ const ColorfulSlider: FunctionComponent<ColorfulSliderProps> = ({ change, state 
         ref={sliderRef}
         className={styles["slider_bg"]}
         style={{
-          background: `linear-gradient(to right, rgb(${state.color1.toArray()?.join(",")}), rgb(${state.color2.toArray()?.join(",")})`,
+          background: `linear-gradient(to right, ${state.colorgrad.map(v => `rgb(${v.toArray()?.join(",")})`).join(', ')}`,
         }}
         onMouseDown={handleMouseDown}
       >

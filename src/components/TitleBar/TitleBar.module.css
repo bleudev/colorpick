@@ -21,10 +21,20 @@
     font-size: 20px;
 }
 
-.txt_r, .txt_g {
+/*
+RGB Colorful Text
+*/
+.rgb, .hsl {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.txt_r, .txt_g, .txt_b, .txt_h, .txt_s, .txt_l {
     transition: 
         filter 0.5s ease-in-out,
-        color 0.5s ease-in-out;
+        color 0.5s ease-in-out,
+        -webkit-text-stroke 0.5s ease-in-out;
 }
 
 .txt_r {
@@ -39,12 +49,6 @@
     color: rgb(143, 143, 255);
 }
 
-.rgb {
-    display: inline-block;
-    font-weight: 600;
-    font-size: 19px;
-}
-
 .logo:hover .txt_r, .rgb:hover .txt_r {
     filter: drop-shadow(0 0 0.5em rgba(255, 42, 42, 0.7));
 }
@@ -55,4 +59,87 @@
 
 .rgb:hover .txt_b {
     filter: drop-shadow(0 0 0.5em rgba(75, 153, 255, 0.7));
+}
+
+@keyframes rainbowAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes TextStrokeAnimation {
+    0% {
+        -webkit-text-stroke: 0.00px white;
+    }
+    20% {
+        -webkit-text-stroke: 0.06px white;
+    }
+    40% {
+        -webkit-text-stroke: 0.12px white;
+    }
+    60% {
+        -webkit-text-stroke: 0.18px white;
+    }
+    80% {
+        -webkit-text-stroke: 0.24px white;
+    }
+    100% {
+        -webkit-text-stroke: 0.30px white;
+    }
+}
+
+.txt_h {
+    font-size: 20px;
+    background: var(--h_grad);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowAnimation 6s linear infinite; /* Изменили имя анимации */
+    display: inline-block;
+}
+
+.txt_s {
+    color: hsl(90, 100%, 50%);
+}
+
+.txt_l {
+    color: white;
+    filter: drop-shadow(0 0 0.3em white);
+}
+
+
+.txt_h::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 242px;
+    right: 0;
+    bottom: 0;
+    background: var(--h_grad);
+    background-size: 400% 100%;
+    width: 17px;
+    height: 17px;
+    animation: rainbowAnimation 6s linear infinite;
+    z-index: -1;
+    filter: blur(0.25em);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.hsl:hover .txt_h {
+    animation:
+        TextStrokeAnimation 0.5s linear forwards,
+        rainbowAnimation 6s linear infinite;
+}
+
+.hsl:hover .txt_h::before {
+    opacity: 0.7;
+}
+
+.hsl:hover .txt_s {
+    filter: drop-shadow(0 0 0.5em hsla(90, 100%, 50%, 0.7));
 }

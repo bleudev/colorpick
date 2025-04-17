@@ -16,7 +16,12 @@ export default function App() {
 
   return (
     <>
-      <TitleBar change_mode={(new_mode: Modes) => setMode((old_mode: Modes) => new_mode)}/>
+      <TitleBar color={color} setColor={col => {
+          setMode(col.mode);
+          setFirst(col.states[0].value);
+          setSecond(col.states[1].value);
+          setThird(col.states[2].value);
+        }} change_mode={(new_mode: Modes) => setMode((_: Modes) => new_mode)}/>
       <div className={styles['main']}>
         <Preview color={color}/>
         <div className={styles['container']}>

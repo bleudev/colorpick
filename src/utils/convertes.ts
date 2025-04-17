@@ -2,8 +2,7 @@ import { ColorArray } from "./annotations";
 
 export function HSLToRGB(hsl: ColorArray): ColorArray {
     let [h, s, l] = hsl;
-    s /= 100;
-    l /= 100;
+    h *= 360;
     const k = (n: number) => (n + h / 30) % 12;
     const a = s * Math.min(l, 1 - l);
     const f = (n: number) =>
